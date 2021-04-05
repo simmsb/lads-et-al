@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {%- block head %}
+            {%- block meta %}
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <meta name="google-site-verification" content="KxBie6T6uw1Iexm0-tldr4zEIM4zAUdDLF9N_t97cIE" />
+                <meta name="description" content="{% block og_description %}A group of Lancaster University Students interested in all things Computer Security.{% endblock %}">
+                <meta property="og:title" content="{% block og_title %}Lads et al{% endblock %}">
+                <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+                <meta property="og:image" content="{{ url_for("static", path="/images/logo_small.png") }}">
+                <meta property="og:url" content="{{ request.get_full_path }}">
+                <meta property="og:site_name" content="LadsEtAl">
+                <meta property="og:description" content="{{ self.og_description() }}">
+                <script type="application/ld+json">
+                 {
+                     "@context": "https://schema.org",
+                     "@type": "WebSite",
+                     "url": "{{ url_for("blog_index") }}",
+                     "potentialAction": {
+                         "@type": "SearchAction",
+                         "target": "{{ url_for("blog_search") }}?search={search_term_string}",
+                         "query-input": "required name=search_term_string"
+                     }
+                 }
+                </script>
+                <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{{ url_for("static", path="/images/apple-touch-icon-57x57.png") }}" />
+                <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ url_for("static", path="/images/apple-touch-icon-114x114.png") }}" />
+                <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ url_for("static", path="/images/apple-touch-icon-72x72.png") }}" />
+                <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ url_for("static", path="/images/apple-touch-icon-144x144.png") }}" />
+                <link rel="apple-touch-icon-precomposed" sizes="60x60" href="{{ url_for("static", path="/images/apple-touch-icon-60x60.png") }}" />
+                <link rel="apple-touch-icon-precomposed" sizes="120x120" href="{{ url_for("static", path="/images/apple-touch-icon-120x120.png") }}" />
+                <link rel="apple-touch-icon-precomposed" sizes="76x76" href="{{ url_for("static", path="/images/apple-touch-icon-76x76.png") }}" />
+                <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{{ url_for("static", path="/images/apple-touch-icon-152x152.png") }}" />
+                <link rel="icon" type="image/png" href="{{ url_for("static", path="/images/favicon-196x196.png") }}" sizes="196x196" />
+                <link rel="icon" type="image/png" href="{{ url_for("static", path="/images/favicon-96x96.png") }}" sizes="96x96" />
+                <link rel="icon" type="image/png" href="{{ url_for("static", path="/images/favicon-32x32.png") }}" sizes="32x32" />
+                <link rel="icon" type="image/png" href="{{ url_for("static", path="/images/favicon-16x16.png") }}" sizes="16x16" />
+                <link rel="icon" type="image/png" href="{{ url_for("static", path="/images/favicon-128.png") }}" sizes="128x128" />
+                <meta name="application-name" content="Site Name"/>
+                <meta name="msapplication-TileColor" content="#FFFFFF" />
+                <meta name="msapplication-TileImage" content="{{ url_for("static", path="/images/mstile-144x144.png") }}" />
+                <meta name="msapplication-square70x70logo" content="{{ url_for("static", path="/images/mstile-70x70.png") }}" />
+                <meta name="msapplication-square150x150logo" content="{{ url_for("static", path="/images/mstile-150x150.png") }}" />
+                <meta name="msapplication-wide310x150logo" content="{{ url_for("static", path="/images/mstile-310x150.png") }}" />
+                <meta name="msapplication-square310x310logo" content="{{ url_for("static", path="/images/mstile-310x310.png") }}" />
+            {%- endblock meta %}
+            <title>{% block title %}Lads et al{% endblock title %}</title>
+            {%- block style %}
+                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
+                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/solid.css" integrity="sha384-QokYePQSOwpBDuhlHOsX0ymF6R/vLk/UQVz3WHa6wygxI5oGTmDTv8wahFOSspdm" crossorigin="anonymous">
+                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/fontawesome.css" integrity="sha384-vd1e11sR28tEK9YANUtpIOdjGW14pS87bUBuOIoBILVWLFnS+MCX9T6MMf0VdPGq" crossorigin="anonymous">
+                <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+                <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+                <link rel="stylesheet" href="{{ url_for('static', path="/css/main.css") }}">
+                <link rel="stylesheet" href="{{ url_for('static', path="/css/highlight.min.css") }}">
+            {%- endblock style %}
+        {%- endblock head %}
+    </head>
+    <body>
+        <div class="with-sidebar">
+            {%- block body %}
+                <div class="fill-height">
+                    <div id="menu" class="sidebar">
+                        <div class="header">
+                            <nav class="nav">
+                                {% block nav %}
+                                    <ul class="nav-list">
+                                        <li class="nav-item">
+                                            <a class="button" href="{{ url_for("blog_index") }}">Home</a>
+                                        </li>
+                                        {% block nav_cont %}{% endblock nav_cont %}
+                                    </ul>
+                                {% endblock nav %}
+                            </nav>
+
+                            <br />
+
+                            {% block search_bar %}{% endblock search_bar %}
+
+                            <div class="header-content">
+                                {%- block header_content %}{% endblock header_content %}
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <div class="legal">
+                                <div class="">
+                                    {% if request.user.is_authenticated %}
+                                        <a href="{{ url_for("logout") }}" title="Log Out">Authed as: {{ request.user.username }}</a>
+                                    {% else %}
+                                        <a href="{{ url_for("sign_in") }}" title="Sign In">Sign In</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="not-sidebar">
+                        <main>
+                            {%- block content %}{% endblock content %}
+                        </main>
+                    </div>
+                </div>
+                {%- block script %}{% endblock script %}
+            {%- endblock body %}
+        </div>
+    </body>
+</html>
