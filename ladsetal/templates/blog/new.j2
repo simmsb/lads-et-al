@@ -14,27 +14,37 @@
 {% block title %}Create new blog{% endblock title %}
 
 {% block content %}
-    <form class="pure-form pure-form-aligned" method="POST" action="{{ request.url }}">
+    <br />
+    <form class="box" method="POST" action="{{ request.url }}" role="form">
         <fieldset>
             <legend>{% block legend %}Create new blog post{% endblock legend %}</legend>
-
-            <div class="pure-control-group">
-                {{ form.title.label }}
+           <br/>
+            <div class="field">
+                <label class="label" for="title">
+                    {{ form.title.label.text }}
+                </label>
                 {{ with_errors(form.title, ) }}
             </div>
-            <div class="pure-control-group">
-                {{ form.tags.label }}
+
+            <div class="field">
+                <label class="label" for="tags">
+                    {{ form.tags.label.text }}
+                </label>
                 {{ with_errors(form.tags, type="tags", data_tags_whitelist=existing_tags.decode()) }}
             </div>
-            <div class="pure-control-group">
-                {{ form.content.label }}
+
+            <div class="field">
+                <label class="label" for="content">
+                    {{ form.content.label.text }}
+                </label>
                 {{ with_errors(form.content, ) }}
             </div>
-            <div class="pure-controls">
-                <button type="submit" class="pure-button pure-button-primary">Submit</button>
+
+            <div class="field">
+                <button type="submit" class="button is-link">Submit</button>
             </div>
         </fieldset>
     </form>
-
-    <form action="{{ url_for('image_upload') }}" class="dropzone" id="image-upload-dropzone" data-existing-images="{{ existing_images.decode() }}"></form>
+    <br/>
+    <form action="{{ url_for('image_upload') }}" class="dropzone box" id="image-upload-dropzone" data-existing-images="{{ existing_images.decode() }}"></form>
 {% endblock %}

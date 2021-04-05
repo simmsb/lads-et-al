@@ -48,61 +48,54 @@
             {%- endblock meta %}
             <title>{% block title %}Lads et al{% endblock title %}</title>
             {%- block style %}
-                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
-                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/solid.css" integrity="sha384-QokYePQSOwpBDuhlHOsX0ymF6R/vLk/UQVz3WHa6wygxI5oGTmDTv8wahFOSspdm" crossorigin="anonymous">
-                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/fontawesome.css" integrity="sha384-vd1e11sR28tEK9YANUtpIOdjGW14pS87bUBuOIoBILVWLFnS+MCX9T6MMf0VdPGq" crossorigin="anonymous">
-                <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
-                <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
                 <link rel="stylesheet" href="{{ url_for('static', path="/css/main.css") }}">
                 <link rel="stylesheet" href="{{ url_for('static', path="/css/highlight.min.css") }}">
             {%- endblock style %}
         {%- endblock head %}
     </head>
     <body>
-        <div class="with-sidebar">
-            {%- block body %}
-                <div class="fill-height">
-                    <div id="menu" class="sidebar">
-                        <div class="header">
-                            <nav class="nav">
-                                {% block nav %}
-                                    <ul class="nav-list">
-                                        <li class="nav-item">
-                                            <a class="button" href="{{ url_for("blog_index") }}">Home</a>
-                                        </li>
-                                        {% block nav_cont %}{% endblock nav_cont %}
-                                    </ul>
-                                {% endblock nav %}
-                            </nav>
+        {%- block body %}
+            <header>
+                <section class="container box">
+                    <nav class="navbar" role="navigation">
+                        <div class="navbar-brand">
+                            <a class="navbar-item" href="{{ url_for("blog_index") }}">Lads et al</a>
+                        </div>
 
-                            <br />
+                        <div class="navbar-menu">
+                            <div class="navbar-start">
+                                {% block nav_start %}{% endblock nav_start %}
+                            </div>
+                            <div class="navbar-end">
+                                {% if request.user.is_authenticated %}
+                                    <div class="navbar-item has-dropdown is-hoverable">
+                                        <a class="navbar-link">
+                                            {{ request.user.username }}
+                                        </a>
 
-                            {% block search_bar %}{% endblock search_bar %}
-
-                            <div class="header-content">
-                                {%- block header_content %}{% endblock header_content %}
+                                        <div class="navbar-dropdown">
+                                            <a class="navbar-item" href="{{ url_for("logout") }}" title="Log Out">
+                                                Log Out
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="buttons">
+                                        <a class="button is-primary" href="{{ url_for("sign_in") }}" title="Sign In">
+                                            <strong>Sign In</strong>
+                                        </a>
+                                    </div>
+                                {% endif %}
                             </div>
                         </div>
-                        <div class="footer">
-                            <div class="legal">
-                                <div class="">
-                                    {% if request.user.is_authenticated %}
-                                        <a href="{{ url_for("logout") }}" title="Log Out">Authed as: {{ request.user.username }}</a>
-                                    {% else %}
-                                        <a href="{{ url_for("sign_in") }}" title="Sign In">Sign In</a>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="not-sidebar">
-                        <main>
-                            {%- block content %}{% endblock content %}
-                        </main>
-                    </div>
-                </div>
-                {%- block script %}{% endblock script %}
-            {%- endblock body %}
-        </div>
+                    </nav>
+                </section>
+            </header>
+            <main role="main" class="container">
+                {%- block content %}{% endblock content %}
+            </main>
+            {%- block script %}{% endblock script %}
+        {%- endblock body %}
     </body>
 </html>

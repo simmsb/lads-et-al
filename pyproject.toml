@@ -5,7 +5,7 @@ description = "the blog"
 authors = ["Ben Simms <ben@bensimms.moe>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.9"
 itsdangerous = "^1.1"
 cryptography = "^3.3"
 gino = "^1.0"
@@ -22,19 +22,17 @@ aiofiles = "^0.6"
 slug = "^2.0"
 WTForms = "^2.3"
 yarl = "^1.6"
-gunicorn = "^20.0"
 PyCrypto = "^2.6"
 python-dateutil = "^2.8"
 parsedatetime = "^2.6"
 uvicorn = "^0.13"
-psycopg2-binary = "^2.8.6"
 mistune = "2.0.0a6"
 authlib = {git = "https://github.com/lepture/authlib.git"}
-httpx = "^0.16.1"
 orjson = "^3.4.6"
+psycopg2-binary = "^2.8.6"
+httpx = "^0.17.1"
 
 [tool.poetry.dev-dependencies]
-psycopg2-binary = "^2.8"
 
 [tool.poetry.scripts]
 

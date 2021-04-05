@@ -6,7 +6,7 @@ services:
     env_file: .env
     restart: always
     volumes:
-      - ./db-data:/var/lib/postgresql/data/
+      - db_data:/var/lib/postgresql/data/
     networks:
       - db
 
@@ -20,7 +20,9 @@ services:
       - DB_URL=postgres://$POSTGRES_USER:$POSTGRES_PASSWORD@db:$POSTGRES_PORT/$POSTGRES_DATABASE
     networks:
       - db
-      - caddy
+    ports:
+      - "127.0.0.1:12800:8080"
+    # - caddy
     # labels:
     #   caddy: scc-luhack.lancaster.ac.uk, scc-luhack.lancs.ac.uk
     #   caddy.reverse_proxy: "{{upstreams 8080}}"
@@ -44,7 +46,7 @@ services:
   #     caddy.email: ben@bensimms.moe
 
 networks:
-  db:
+  db_data:
 #   caddy:
 
 # volumes:

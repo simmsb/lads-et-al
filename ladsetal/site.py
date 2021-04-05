@@ -53,7 +53,7 @@ app.add_middleware(
         "fonts.googleapis.com",
         "fonts.gstatic.com",
     ),
-    style_src=("'self'", "use.fontawesome.com", "unpkg.com", "fonts.googleapis.com"),
+    style_src=("'self'", "use.fontawesome.com", "unpkg.com", "fonts.googleapis.com", "cdn.jsdelivr.net"),
 )
 app.add_middleware(AuthenticationMiddleware, backend=TokenAuthBackend())
 app.add_middleware(SessionMiddleware, secret_key=settings.TOKEN_SECRET)
