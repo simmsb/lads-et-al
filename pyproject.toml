@@ -5,7 +5,7 @@ description = "the blog"
 authors = ["Ben Simms <ben@bensimms.moe>"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = ">=3.8,<4"
 itsdangerous = "^1.1"
 cryptography = "^3.3"
 gino = "^1.0"
