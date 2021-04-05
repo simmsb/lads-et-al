@@ -46,8 +46,9 @@ services:
   #     caddy.email: ben@bensimms.moe
 
 networks:
-  db_data:
+  db:
 #   caddy:
 
-# volumes:
+volumes:
+  db_data:
 #   caddy_data: {}
